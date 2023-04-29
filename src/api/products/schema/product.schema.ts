@@ -1,8 +1,10 @@
 import { Schema, SchemaFactory, Prop } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
-import { ISizes } from '../entities/product.entity';
+import mongoose, { HydratedDocument } from 'mongoose';
 
 // Models
+import { Category } from 'src/api/category/schema/category.schema';
+import { Brand } from 'src/api/brand/schema/brand.schema';
+import { ISizes } from '../entities/product.entity';
 
 export type ProductDocument = HydratedDocument<Product>;
 
@@ -14,11 +16,11 @@ export class Product {
   @Prop()
   price: number;
 
-  @Prop()
-  category: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Category.name })
+  category: Category;
 
-  @Prop()
-  brand: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Brand.name })
+  brand: Brand;
 
   @Prop()
   ofert: string;
