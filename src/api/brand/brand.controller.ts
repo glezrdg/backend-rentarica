@@ -1,9 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+
 import { BrandService } from './brand.service';
+
+// DTO
 import { CreateBrandDto } from './dto/create-brand.dto';
 import { UpdateBrandDto } from './dto/update-brand.dto';
 
-@Controller('brand')
+@ApiTags('Brands')
+@Controller('brands')
 export class BrandController {
   constructor(private readonly brandService: BrandService) { }
 

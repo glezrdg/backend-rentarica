@@ -7,7 +7,7 @@ export class Product {
   category: string
   brand: string
   ofert: string
-  images: string[]
+  images: string
 }
 
 export class ISizes {
