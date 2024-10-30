@@ -7,14 +7,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 // Modules
-import { ProductsModule } from './api/products/products.module';
-import { CategoryModule } from './api/category/category.module';
-import { BrandModule } from './api/brand/brand.module';
-import { OrdersModule } from './api/orders/orders.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { DeliveryModule } from './api/delivery/delivery.module';
 import { AuthModule } from './api/auth/auth.module';
+import { DoctorsModule } from './api/doctors/doctors.module';
+import { PatientsModule } from './api/patients/patients.module';
+import { AppointmentModule } from './api/appointment/appointment.module';
 
 let MONGO_URI =
   // 'mongodb+srv://bloodysi:bloodysi@atlascluster.fohieyx.mongodb.net/?retryWrites=true&w=majority'
@@ -25,14 +23,12 @@ let MONGO_URI =
     MongooseModule.forRoot(MONGO_URI),
     MulterModule.register({ dest: './files' }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'files'),
+      rootPath: join(__dirname, '..', 'public'),
     }),
-    ProductsModule,
-    CategoryModule,
-    BrandModule,
-    OrdersModule,
-    DeliveryModule,
-    AuthModule
+    AuthModule,
+    DoctorsModule,
+    PatientsModule,
+    AppointmentModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -5,5 +5,11 @@ export class CreateAuthDto {
   email: string;
 
   @ApiProperty()
+  fullname: string;
+
+  @ApiProperty()
   password: string;
+
+  @ApiProperty()
+  role?: string;
 }

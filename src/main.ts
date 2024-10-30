@@ -18,10 +18,10 @@ async function bootstrap() {
       'Api consumida por el proyecto de ecommerce v1',
     )
     .setVersion('1.0')
-    .addTag('Products')
-    .addTag('Categories')
-    .addTag('Brands')
-    .addTag('Orders')
+    .addTag('Doctors')
+    .addTag('Appointments')
+    .addTag('Patients')
+    .addTag('Auth')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
