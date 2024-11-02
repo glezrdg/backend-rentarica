@@ -16,7 +16,7 @@ export class AuthService {
     @InjectModel(Auth.name) private auth: Model<AuthDocument>,
   ) { }
 
-  async login(createAuthDto: CreateAuthDto) {
+  async login(createAuthDto: { email: string, password: string }) {
     try {
 
       const user = await this.auth.findOne({ email: createAuthDto.email })
@@ -30,7 +30,6 @@ export class AuthService {
       return {
         fullname: user.fullname,
         email: user.email,
-        role: user.role,
         _id: user._id,
         token,
       };
@@ -56,7 +55,6 @@ export class AuthService {
       return {
         fullname: user.fullname,
         email: user.email,
-        role: user.role,
         _id: user._id,
         token,
       };

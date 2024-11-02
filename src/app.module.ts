@@ -10,25 +10,22 @@ import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthModule } from './api/auth/auth.module';
-import { DoctorsModule } from './api/doctors/doctors.module';
-import { PatientsModule } from './api/patients/patients.module';
-import { AppointmentModule } from './api/appointment/appointment.module';
+import { PropertiesModule } from './api/properties/properties.module';
 
 let MONGO_URI =
   // 'mongodb+srv://bloodysi:bloodysi@atlascluster.fohieyx.mongodb.net/?retryWrites=true&w=majority'
-  'mongodb://127.0.0.1:27017/ecommerce1'
+  'mongodb://127.0.0.1:27017/rentarica'
 
 @Module({
   imports: [
     MongooseModule.forRoot(MONGO_URI),
-    MulterModule.register({ dest: './files' }),
+    MulterModule.register({ dest: join(__dirname, '..', 'public/uploads') }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
     }),
+
     AuthModule,
-    DoctorsModule,
-    PatientsModule,
-    AppointmentModule
+    PropertiesModule
   ],
   controllers: [AppController],
   providers: [AppService],
