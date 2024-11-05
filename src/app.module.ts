@@ -16,6 +16,8 @@ import { PropertiesModule } from './api/properties/properties.module';
 let MONGO_URI =
   'mongodb://127.0.0.1:27017/rentarica'
 
+console.log(process.env.MONGO_PUBLIC_URL)
+
 @Module({
   imports: [
     ConfigModule.forRoot({
