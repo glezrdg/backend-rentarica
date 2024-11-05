@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MulterModule } from '@nestjs/platform-express';
+import { ConfigModule } from '@nestjs/config'
 
 
 import { AppController } from './app.controller';
@@ -13,17 +14,18 @@ import { AuthModule } from './api/auth/auth.module';
 import { PropertiesModule } from './api/properties/properties.module';
 
 let MONGO_URI =
-  // 'mongodb+srv://bloodysi:bloodysi@atlascluster.fohieyx.mongodb.net/?retryWrites=true&w=majority'
   'mongodb://127.0.0.1:27017/rentarica'
 
 @Module({
   imports: [
-    MongooseModule.forRoot(MONGO_URI),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.MONGO_PUBLIC_URL || MONGO_URI),
     MulterModule.register({ dest: join(__dirname, '..', 'public/uploads') }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
     }),
-
     AuthModule,
     PropertiesModule
   ],
