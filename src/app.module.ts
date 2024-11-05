@@ -13,15 +13,12 @@ import { join } from 'path';
 import { AuthModule } from './api/auth/auth.module';
 import { PropertiesModule } from './api/properties/properties.module';
 
-let MONGO_URI = 'mongodb://127.0.0.1:27017/rentarica'
-
-
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: '.env'
     }),
-    MongooseModule.forRoot(process.env.MONGO_PUBLIC_URL || MONGO_URI),
+    MongooseModule.forRoot(process.env.MONGO_PUBLIC_URL),
     MulterModule.register({ dest: join(__dirname, '..', 'public/uploads') }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
