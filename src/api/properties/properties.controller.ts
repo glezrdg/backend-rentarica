@@ -6,7 +6,9 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { saveFileStorage } from 'src/utils/multerConfig';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Properties')
 @Controller('properties')
 export class PropertiesController {
   constructor(private readonly propertiesService: PropertiesService) { }
