@@ -14,28 +14,48 @@ export class PropertiesController {
   constructor(private readonly propertiesService: PropertiesService) { }
 
   @Post()
-  create(@Body() createPropertyDto: CreatePropertyDto) {
-    return this.propertiesService.create(createPropertyDto);
+  async create(@Body() createPropertyDto: CreatePropertyDto) {
+    try {
+      return await this.propertiesService.create(createPropertyDto);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
   }
 
   @Get()
-  findAll(@Query() queries: any) {
-    return this.propertiesService.findAll(queries);
+  async findAll(@Query() queries: any) {
+    try {
+      return this.propertiesService.findAll(queries);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.propertiesService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    try {
+      return this.propertiesService.findOne(id);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePropertyDto: UpdatePropertyDto) {
-    return this.propertiesService.update(id, updatePropertyDto);
+  async update(@Param('id') id: string, @Body() updatePropertyDto: UpdatePropertyDto) {
+    try {
+      return this.propertiesService.update(id, updatePropertyDto);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.propertiesService.remove(id);
+  async remove(@Param('id') id: string) {
+    try {
+      return this.propertiesService.remove(id);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
   }
 
   // UPLOAD PROPERTY IMAGES
