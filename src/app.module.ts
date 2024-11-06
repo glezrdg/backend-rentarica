@@ -13,8 +13,8 @@ import { AuthModule } from './api/auth/auth.module';
 import { PropertiesModule } from './api/properties/properties.module';
 
 let MONGO_URI =
-  // 'mongodb+srv://bloodysi:bloodysi@atlascluster.fohieyx.mongodb.net/?retryWrites=true&w=majority'
-  'mongodb://127.0.0.1:27017/rentarica'
+  'mongodb+srv://layel:lolxd@cluster0.0y1eqmt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+  // 'mongodb://127.0.0.1:27017/rentarica'
 
 @Module({
   imports: [
