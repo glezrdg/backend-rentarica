@@ -5,6 +5,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Property, PropertyDocument } from './schema/property.schema';
 import { Model } from 'mongoose';
 
+
+
+
 @Injectable()
 export class PropertiesService {
   constructor(
