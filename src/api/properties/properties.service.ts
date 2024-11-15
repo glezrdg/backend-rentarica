@@ -23,6 +23,8 @@ export class PropertiesService {
     }
   }
 
+  
+
   async findAll(queries: any) {
     console.log('QUERIES: ', queries)
     const { title, active, category, bathMax, bathMin, priceMin, priceMax, zone, floorMin, floorMax, sizeMin, sizeMax, features, propertyType } = queries
