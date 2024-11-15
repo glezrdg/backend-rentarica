@@ -62,9 +62,33 @@ export class PropertiesController {
   @Post('/:id/images')
   @UseInterceptors(FilesInterceptor('images', 8, saveFileStorage))
   async uploadImages(@UploadedFiles() files: Array<Express.Multer.File>, @Param('id') id: string) {
-    console.log('FILES', files)
+
     try {
-      await this.propertiesService.addProductImage(id, files.map((f) => f.filename))
+      await this.propertiesService.addPropertyImage(id, files.map((f) => f.filename))
+      // return this.propertiesService.findOne(id)
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
+  }
+  // UPLOAD PROPERTY TITLE
+  @Post('/:id/title_images')
+  @UseInterceptors(FilesInterceptor('images', 3, saveFileStorage))
+  async uploadTitle(@UploadedFiles() files: Array<Express.Multer.File>, @Param('id') id: string) {
+
+    try {
+      await this.propertiesService.addPropertyTitle(id, files.map((f) => f.filename))
+      // return this.propertiesService.findOne(id)
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
+  }
+  // UPLOAD PROPERTY CAPTACION
+  @Post('/:id/captacion_images')
+  @UseInterceptors(FilesInterceptor('images', 3, saveFileStorage))
+  async uploadCaptacion(@UploadedFiles() files: Array<Express.Multer.File>, @Param('id') id: string) {
+
+    try {
+      await this.propertiesService.addPropertyCaptacion(id, files.map((f) => f.filename))
       return this.propertiesService.findOne(id)
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)

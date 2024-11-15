@@ -21,17 +21,21 @@ export class PropertiesService {
   }
 
   async findAll(queries: any) {
-
-    const { title, active, category, bathMax, bathMin, priceMin, priceMax, floorMin, floorMax, sizeMin, sizeMax } = queries
+    console.log('QUERIES: ', queries)
+    const { title, active, category, bathMax, bathMin, priceMin, priceMax, zone, floorMin, floorMax, sizeMin, sizeMax, features, propertyType } = queries
     const query: any = {}
 
     if (title) query.title = { $regex: title, $options: 'i' }
     if (category) query.category = category
-    if (active) query.active = active
+    if (active) query.isActive = active
     if (bathMin) query.bathrooms = { $gte: Number(bathMin), $lte: Number(bathMax) }
     if (priceMin) query.price = { $gte: Number(priceMin), $lte: Number(priceMax) }
     if (floorMin) query.floors = { $gte: Number(floorMin), $lte: Number(floorMax) }
     if (sizeMin) query.size = { $gte: Number(sizeMin), $lte: Number(sizeMax) }
+    if (features) query.items = { $in: features.split(',') }
+    if (propertyType) query.type = propertyType
+    if (zone) query.zone = zone
+
 
     try {
       const properties = await this.property.find(query)
@@ -68,9 +72,25 @@ export class PropertiesService {
     }
   }
 
-  async addProductImage(id: string, paths: string[]) {
+  async addPropertyImage(id: string, paths: string[]) {
     try {
       const product = await this.property.findByIdAndUpdate(id, { images: paths })
+      return product
+    } catch (error) {
+      throw new Error(error.message)
+    }
+  }
+  async addPropertyTitle(id: string, paths: string[]) {
+    try {
+      const product = await this.property.findByIdAndUpdate(id, { titleImages: paths })
+      return product
+    } catch (error) {
+      throw new Error(error.message)
+    }
+  }
+  async addPropertyCaptacion(id: string, paths: string[]) {
+    try {
+      const product = await this.property.findByIdAndUpdate(id, { captacionImages: paths })
       return product
     } catch (error) {
       throw new Error(error.message)
