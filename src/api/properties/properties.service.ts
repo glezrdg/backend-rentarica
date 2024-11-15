@@ -27,7 +27,7 @@ export class PropertiesService {
 
   async findAll(queries: any) {
     console.log('QUERIES: ', queries)
-    const { title, active, category, bathMax, bathMin, priceMin, priceMax, zone, floorMin, floorMax, sizeMin, sizeMax, features, propertyType } = queries
+    const { title, active, category, bathMax, bathMin, priceMin, priceMax, zone, floorMin, floorMax, sizeMin, sizeMax, features, propertyType, bedMin, bedMax } = queries
     const query: any = {}
 
     if (title) query.title = { $regex: title, $options: 'i' }
@@ -40,7 +40,7 @@ export class PropertiesService {
     if (features) query.items = { $in: features.split(',') }
     if (propertyType) query.type = propertyType
     if (zone) query.zone = zone
-
+    if (bedMin) query.rooms = { $gte: Number(bedMin), $lte: Number(bedMax) }
 
     try {
       const properties = await this.property.find(query)
