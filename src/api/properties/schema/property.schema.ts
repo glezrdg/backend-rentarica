@@ -10,6 +10,10 @@ export class Property {
   title: string
   @Prop()
   category: string
+  @Prop()
+  type: string
+  @Prop()
+  price: number
   @Prop({ default: false })
   active: boolean
   @Prop()
@@ -19,19 +23,35 @@ export class Property {
   @Prop()
   images: string[]
   @Prop()
+  titleImages: string[]
+  @Prop()
+  captacionImages: string[]
+  @Prop()
   bathrooms: number
   @Prop()
   rooms: number
   @Prop()
   size: number
   @Prop()
+  zone: string
+  @Prop()
   floors: number
   @Prop()
-  type: string
+  owner_name: string
   @Prop()
-  province: string
+  owner_contact: string
   @Prop()
-  price: number
+  airbnb: string
+  @Prop()
+  isShared: boolean
+  @Prop()
+  isNegotiable: boolean
+  @Prop()
+  isActive: boolean
+  @Prop()
+  code: string
+  @Prop()
+  unitPrice: string
 }
 
 export const PropertySchema = SchemaFactory.createForClass(Property);
