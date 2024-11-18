@@ -53,6 +53,8 @@ export class Property {
   @Prop()
   agent: string;
   @Prop()
+  sharedAgent: string;
+  @Prop()
   unitPrice: string;
 }
 

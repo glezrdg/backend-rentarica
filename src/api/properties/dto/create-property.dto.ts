@@ -44,5 +44,7 @@ export class CreatePropertyDto {
   @ApiProperty()
   agent: string;
   @ApiProperty()
+  sharedAgent: string;
+  @ApiProperty()
   unitPrice: string;
 }

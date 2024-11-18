@@ -24,5 +24,6 @@ export class Property {
   isNegotiable: boolean;
   code: string;
   agent: string;
+  sharedAgent: string;
   unitPrice: string;
 }
