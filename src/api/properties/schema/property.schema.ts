@@ -55,6 +55,8 @@ export class Property {
   @Prop()
   sharedAgent: string;
   @Prop()
+  youtube: string;
+  @Prop()
   unitPrice: string;
 }
 

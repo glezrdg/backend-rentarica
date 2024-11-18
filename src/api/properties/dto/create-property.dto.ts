@@ -46,5 +46,7 @@ export class CreatePropertyDto {
   @ApiProperty()
   sharedAgent: string;
   @ApiProperty()
+  youtube: string;
+  @ApiProperty()
   unitPrice: string;
 }

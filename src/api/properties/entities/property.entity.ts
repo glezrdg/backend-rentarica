@@ -26,4 +26,5 @@ export class Property {
   agent: string;
   sharedAgent: string;
   unitPrice: string;
+  youtube: string;
 }
