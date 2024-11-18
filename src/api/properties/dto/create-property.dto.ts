@@ -1,46 +1,48 @@
-import { ApiProperty } from "@nestjs/swagger"
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreatePropertyDto {
   @ApiProperty()
-  title: string
+  title: string;
   @ApiProperty()
-  type: string
+  type: string;
   @ApiProperty()
-  category: string
+  category: string;
   @ApiProperty()
-  price: number
+  price: number;
   @ApiProperty()
-  description: string
+  description: string;
   @ApiProperty()
-  province: string
+  province: string;
   @ApiProperty()
-  items: string[]
+  items: string[];
   @ApiProperty()
-  images: any[]
+  images: any[];
   @ApiProperty()
-  bathrooms: number
+  bathrooms: number;
   @ApiProperty()
-  rooms: number
+  rooms: number;
   @ApiProperty()
-  size: number
+  size: number;
   @ApiProperty()
-  floors: number
+  floors: number;
   @ApiProperty()
-  sector: string
+  sector: string;
   @ApiProperty()
-  owner_name: string
+  owner_name: string;
   @ApiProperty()
-  owner_contact: string
+  owner_contact: string;
   @ApiProperty()
-  airbnb: string
+  airbnb: string;
   @ApiProperty()
-  isShared: boolean
+  isShared: boolean;
   @ApiProperty()
-  isNegotiable: boolean
+  isNegotiable: boolean;
   @ApiProperty()
-  isActive: boolean
+  isActive: boolean;
   @ApiProperty()
-  code: string
+  code: string;
   @ApiProperty()
-  unitPrice: string
+  agent: string;
+  @ApiProperty()
+  unitPrice: string;
 }

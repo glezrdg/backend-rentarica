@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MulterModule } from '@nestjs/platform-express';
-import { ConfigModule } from '@nestjs/config'
-
+import { ConfigModule } from '@nestjs/config';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -16,7 +15,7 @@ import { PropertiesModule } from './api/properties/properties.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env'
+      envFilePath: '.env',
     }),
     MongooseModule.forRoot(process.env.MONGO_PUBLIC_URL),
     MulterModule.register({ dest: join(__dirname, '..', 'public/uploads') }),
@@ -24,10 +23,10 @@ import { PropertiesModule } from './api/properties/properties.module';
       rootPath: join(__dirname, '..', 'public'),
     }),
     AuthModule,
-    PropertiesModule
+    PropertiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
-console.log(process.env.MONGO_PUBLIC_URL)
+export class AppModule {}
+console.log(process.env.MONGO_PUBLIC_URL);

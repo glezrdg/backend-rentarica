@@ -7,51 +7,53 @@ export type PropertyDocument = HydratedDocument<Property>;
 @Schema({ timestamps: true })
 export class Property {
   @Prop()
-  title: string
+  title: string;
   @Prop()
-  category: string
+  category: string;
   @Prop()
-  type: string
+  type: string;
   @Prop()
-  price: number
+  price: number;
   @Prop({ default: false })
-  active: boolean
+  active: boolean;
   @Prop()
-  description: string
+  description: string;
   @Prop()
-  items: string[]
+  items: string[];
   @Prop()
-  images: string[]
+  images: string[];
   @Prop()
-  titleImages: string[]
+  titleImages: string[];
   @Prop()
-  captacionImages: string[]
+  captacionImages: string[];
   @Prop()
-  bathrooms: number
+  bathrooms: number;
   @Prop()
-  rooms: number
+  rooms: number;
   @Prop()
-  size: number
+  size: number;
   @Prop()
-  zone: string
+  zone: string;
   @Prop()
-  floors: number
+  floors: number;
   @Prop()
-  owner_name: string
+  owner_name: string;
   @Prop()
-  owner_contact: string
+  owner_contact: string;
   @Prop()
-  airbnb: string
+  airbnb: string;
   @Prop()
-  isShared: boolean
+  isShared: boolean;
   @Prop()
-  isNegotiable: boolean
+  isNegotiable: boolean;
   @Prop()
-  isActive: boolean
+  isActive: boolean;
   @Prop()
-  code: string
+  code: string;
   @Prop()
-  unitPrice: string
+  agent: string;
+  @Prop()
+  unitPrice: string;
 }
 
 export const PropertySchema = SchemaFactory.createForClass(Property);
