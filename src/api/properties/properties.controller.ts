@@ -126,4 +126,13 @@ export class PropertiesController {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+  @Delete('/:id/images')
+  async removeImage(@Query('image') image: string, @Param('id') id: string) {
+    try {
+      await this.propertiesService.removeImage(id, image);
+      // return this.propertiesService.findOne(id)
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 }

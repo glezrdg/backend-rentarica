@@ -1,9 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
 import { UpdatePropertyDto } from './dto/update-property.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Property, PropertyDocument } from './schema/property.schema';
 import { Model } from 'mongoose';
+
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class PropertiesService {
@@ -98,7 +101,7 @@ export class PropertiesService {
   async addPropertyImage(id: string, paths: string[]) {
     try {
       const product = await this.property.findByIdAndUpdate(id, {
-        images: paths,
+        $push: { images: { $each: paths } },
       });
       return product;
     } catch (error) {
@@ -124,5 +127,36 @@ export class PropertiesService {
     } catch (error) {
       throw new Error(error.message);
     }
+  }
+
+  async removeImage(propertyId: string, imageName: string) {
+    // Buscar la propiedad en la base de datos
+    const property = await this.property.findById(propertyId);
+    if (!property) {
+      throw new NotFoundException('Property not found');
+    }
+
+    // Verificar si la imagen está asociada a la propiedad
+    const imageIndex = property.images.findIndex((img) => img === imageName);
+    if (imageIndex === -1) {
+      throw new NotFoundException('Image not found in property');
+    }
+
+    // Eliminar la imagen del servidor
+    const imagePath = path.join(__dirname, '..', 'uploads', imageName); // Ruta donde almacenas las imágenes
+    if (fs.existsSync(imagePath)) {
+      fs.unlinkSync(imagePath);
+    } else {
+      console.warn(`Image not found on server: ${imagePath}`);
+    }
+
+    // Eliminar la referencia en la base de datos
+    property.images.splice(imageIndex, 1);
+    await this.property.updateOne(
+      { _id: propertyId },
+      { images: property.images },
+    );
+
+    return { message: 'Image deleted successfully' };
   }
 }
