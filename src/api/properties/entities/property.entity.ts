@@ -27,4 +27,5 @@ export class Property {
   sharedAgent: string;
   unitPrice: string;
   youtube: string;
+  googleMapsLink: string;
 }

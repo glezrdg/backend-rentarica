@@ -57,6 +57,8 @@ export class Property {
   @Prop()
   youtube: string;
   @Prop()
+  googleMapsLink: string;
+  @Prop()
   unitPrice: string;
 }
 

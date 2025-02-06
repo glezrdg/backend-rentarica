@@ -48,5 +48,7 @@ export class CreatePropertyDto {
   @ApiProperty()
   youtube: string;
   @ApiProperty()
+  googleMapsLink: string;
+  @ApiProperty()
   unitPrice: string;
 }
