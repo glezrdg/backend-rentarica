@@ -42,10 +42,12 @@ export class PropertiesService {
       propertyType,
       bedMin,
       bedMax,
+      code,
     } = queries;
     const query: any = {};
 
     if (title) query.title = { $regex: title, $options: 'i' };
+    if (code) query.code = { $regex: code, $options: 'i' };
     if (category) query.category = category;
     if (active) query.isActive = active;
     if (bathMin)
